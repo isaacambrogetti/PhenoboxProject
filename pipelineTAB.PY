@@ -157,31 +157,32 @@ class OBJECT_volumePlant(bpy.types.Operator):
         
         #####################################################
 
-
         # check if it's only one object
         selected_obj = bpy.context.selected_objects
         if len(selected_obj) != 1:
-            self.report({'WARNING'}, "The plant mesh is splitted in more than one mesh! Please, clean it up")
-            return {'CANCELLED'}
+            self.report({'WARNING'}, "The plant mesh is splitted in more than one mesh! Please, check if they're all belonging to the plant.")
         
-        # calculate the volume of the plant
-        obj = selected_obj[0]
-        bpy.context.view_layer.objects.active = obj
-        
-        scene = context.scene
-        obj = context.active_object
+        tot_volume = 0.0
 
-        bm = mesh_helpers.bmesh_copy_from_object(obj, apply_modifiers=True)
-        volume = bm.calc_volume()
-        bm.free()
+        for obj in selected_obj:
+            # calculate the volume of the plant
+            bpy.context.view_layer.objects.active = obj
+            
+            scene = context.scene
+            obj = context.active_object
+
+            bm = mesh_helpers.bmesh_copy_from_object(obj, apply_modifiers=True)
+            volume = bm.calc_volume()
+            bm.free()
+            tot_volume += volume
 
         if unit.system == 'NONE':
-            volume_fmt = clean_float(volume, 8)
+            volume_fmt = clean_float(tot_volume, 8)
         else:
             length, symbol = get_unit(unit.system, unit.length_unit)
 
-            volume_unit = volume * (scale ** 3.0) / (length ** 3.0)
-            volPlant_str = clean_float(volume, 2)
+            volume_unit = tot_volume * (scale ** 3.0) / (length ** 3.0)
+            volPlant_str = clean_float(tot_volume, 2)
             volPlant_fmt = f"{volPlant_str}"
             volumeReal_unit = volume_unit*ratio
             volume_str = clean_float(volumeReal_unit, 2)
