@@ -34,8 +34,8 @@ pcd_pv.plot(scalars='labels', render_points_as_spheres=True, point_size=5)
 
 
 # Suppression du pot en filtrant le cluster qui lui correspond
-plant_clusters = biggest_clusters  # Définir le cluster correspondant à la plante
-mask = labels in plant_clusters
+# Définir le cluster correspondant à la plante
+mask = np.isin(labels, biggest_clusters)
 filtered_points = points[mask]
 
 
