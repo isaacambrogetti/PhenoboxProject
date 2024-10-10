@@ -1,5 +1,5 @@
 import bpy
-import open3d as o3d
+import open3d as o3d   # installed in \'Program Files'\'Blender Foundation'\'Blender 4.1'\4.1\python\
 import numpy as np
 
 # Function to convert Blender mesh to Open3D point cloud
