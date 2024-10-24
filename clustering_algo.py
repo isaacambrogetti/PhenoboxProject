@@ -4,7 +4,7 @@ from sklearn.cluster import DBSCAN
 import matplotlib.pyplot as plt
 
 # load the .ply file
-ply_file = r'test_plant.ply'
+ply_file = r'scans/A2L-D6-8-C-8_pc.ply'
 pcd_pv = pv.read(ply_file)
 points = np.array(pcd_pv.points)
 
@@ -12,7 +12,7 @@ points = np.array(pcd_pv.points)
 center_of_mass = np.mean(points, axis=0) 
 
 # Apply DBSCAN, density based algorithm
-dbscan = DBSCAN(eps=0.75, min_samples=20).fit(points) # eps = maximal distance between two points to be considered in the same neighborhood, min_samples = min nb of points to form a cluster
+dbscan = DBSCAN(eps=0.5, min_samples=20).fit(points) # eps = maximal distance between two points to be considered in the same neighborhood, min_samples = min nb of points to form a cluster
 labels = dbscan.labels_
 
 # get unique labels of clusters
