@@ -43,16 +43,16 @@ It will carried out throughout 5 years, every two weeks each plant is scanned an
 
 ## Experimental setting
 There are about 170 seedlings (some of them might still die before reaching maturity), ((unknown plant subspecies)), growing in the greenhouse.  
-There are two main steps that are required to obtain the information required: scanning of the plant, post-processing of the model to obtain the required features (at the moment only volume).
+There are two main steps that are required to obtain the information needed: scanning of the plant, post-processing of the model to obtain the required features (at the moment only volume).
 #### Scanning
 1. Open RevoScan5 on PC and enter in a new or existing project folder, connect scanner and turntable to the pc and turn on the lights in the phenobox.
-2. Check that the scanning settings on the right of the screen.
+2. Check the scanning settings on the right of the screen.
 3. Place the pot with the plant and the reference object on the rotor plate and set the position for best scanning, regulating accordingly the camera exposure. Set the turntable speed.
 4. Start the scanning and after about 800 frames interrupt it, check quickly the quality and then save it. Repeat the process for all the plants.
 #### Post-processing
 1. Carry out the post-processing of the file from Fusing the pointcloud to clean and obtain the mesh. 
-2. Remove the pot from the 3d-model. (working on a better solution)
+2. Remove the pot from the 3d-model manually. (working on a better solution)
 2. Export the mesh and import it in Blender. 
 3. In Blender use the script to open a tab on the layout page. "Separate by loose part" then select the cube and click "Calculate plant volume".
-4. Save the result of the plant volume in an excell sheet.
+4. Save the result of the plant volume on a sheet.
 
