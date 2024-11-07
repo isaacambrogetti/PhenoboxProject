@@ -58,9 +58,15 @@ There are two main steps that are required to obtain the information needed: sca
 4. Save the result of the plant volume on a sheet.
 
 #### Pot Removing
-The [script](clusterin_algo.py)
+The [script](clustering_algo.py) is made to be run on the command line of your terminal. Here's how to do it.
 
-
+```bash
+python clustering_algo.py scans/Merge_01_pc.ply scans/Merge_01_pc_Plant_Filtered.ply --eps 0.6 --min_samples 25
+```
+- First argument: Your point cloud file (input file)
+- Second argument: Processed point cloud file (output file, provide the path!)
+- --eps: DBSCAN eps parameter. The maximum distance between two samples for one to be considered as in the neighborhood of the other (Default set to 0.5)
+- --min_samples: The number of samples (or total weight) in a neighborhood for a point to be considered as a core point.
 
 
 
