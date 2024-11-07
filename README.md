@@ -50,9 +50,22 @@ There are two main steps that are required to obtain the information needed: sca
 3. Place the pot with the plant and the reference object on the rotor plate and set the position for best scanning, regulating accordingly the camera exposure. Set the turntable speed.
 4. Start the scanning and after about 800 frames interrupt it, check quickly the quality and then save it. Repeat the process for all the plants.
 #### Post-processing
-1. Carry out the post-processing of the file from Fusing the pointcloud to clean and obtain the mesh. 
-2. Remove the pot from the 3d-model manually. (working on a better solution)
+1. Carry out the post-processing of the file (Fusion, isolation, merge the two pointclouds), export the pointcloud. 
+2. Remove the pot from the 3d-model (see below for the process).
+3. clean the file and create a MESH file (back on Revoscan5).
 2. Export the mesh and import it in Blender. 
 3. In Blender use the script to open a tab on the layout page. "Separate by loose part" then select the cube and click "Calculate plant volume".
 4. Save the result of the plant volume on a sheet.
+
+#### Pot Removing
+The [script](clusterin_algo.py)
+
+
+
+
+
+
+## TO DO
+- Create a program that could count leaves of the plant (clustering? -> selection of clusters for separate leaves)
+- extract a leaf and calculate length, width,...
 
