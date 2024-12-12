@@ -54,8 +54,8 @@ There are two main steps that are required to obtain the information needed: sca
 2. Remove the pot from the 3d-model (see below for the process).
 3. clean the file and create a MESH file (back on Revoscan5).
 2. Export the mesh and import it in Blender. 
-3. In Blender use the script to open a tab on the layout page. "Separate by loose part" then select the cube and click "Calculate plant volume". You can also extract a leaf and measure its length and width.
-4. Save the result of the plant volume on a sheet.
+3. In Blender use the script to open a tab on the layout page. The tab is called "PlantMeasures". Click on "Separate by loose part" then select the cube and click "Calculate plant volume". You can also extract a leaf and measure its length, width and area.
+4. Save the results on a sheet.
 
 #### Pot Removing
 The [script](clustering_algo.py) is made to be run on the command line of your terminal. Here's how to do it.
@@ -72,5 +72,5 @@ python clustering_algo.py scans/Merge_01_pc.ply scans/Merge_01_pc_Plant_Filtered
 
 
 ## TO DO
-- Create a program that could count leaves of the plant (clustering? -> selection of clusters for separate leaves)
-
+- Complete readME file with what we did until now.
+- add parameters that we could measure (see parameters list).
