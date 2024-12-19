@@ -26,8 +26,9 @@ It will be carried out throughout 5 years, every two weeks each plant is scanned
     [Structured light scanner](https://en.wikipedia.org/wiki/Structured-light_3D_scanner)  having a light projector and a camera system. Here's the [specifics](https://www.revopoint3d.com/pages/industry-3d-scanner-mini).
     - Calibration plate  
         Black plastic rectangle with different white dots.
-    - Reference cube
-        Cube and stick 
+- **Reference cube**
+        3D printed cube (1.5x1.5x1.5cm) and stick (8.5cm)
+  
 - **PC** (Lenovo Legion)
     _""characteristics""_
 
@@ -41,6 +42,8 @@ It will be carried out throughout 5 years, every two weeks each plant is scanned
 - **Blender** (_v_)  
     [Blender](https://www.blender.org/) is a public project hosted on blender.org, licensed as GNU GPL, owned by its contributors. For that reason Blender is Free and Open Source software, forever.  
     Use blender to import the output file from RevoScan5 to calculate its volume by using python scripts.
+- **Visual Studio Code**
+    [VS code](https://code.visualstudio.com) used to write scripts to extract the features of interest.
 
 
 ## Experimental setting
