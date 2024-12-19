@@ -95,7 +95,7 @@ def count_leaf_tips(point_cloud, radius=2):
 
 
 # Load your point cloud
-pcd = o3d.io.read_point_cloud("scans/Merge_01_pc_Plant_Filtered.ply")  # Replace with your path
+pcd = o3d.io.read_point_cloud("scans/Merge_01_pc_Plant_Filteredwocube_pc.ply")  # Replace with your path
 
 # Skeletonize the point cloud
 skeleton, min_bound, voxel_size = skeletonize_point_cloud(pcd)
@@ -108,7 +108,7 @@ o3d.visualization.draw_geometries([skeleton_pcd])
 
 
 # Count leaf tips
-radius = 3.9  # Adjust based on point cloud scale and resolution
+radius = 3.62  # Adjust based on point cloud scale and resolution
 tip_pcd, tip_count = count_leaf_tips(skeleton_pcd, radius)
 
 # Print results
