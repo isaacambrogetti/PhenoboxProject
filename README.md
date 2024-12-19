@@ -10,8 +10,8 @@ if it doesn't work, run the terminal as the admin
 
 
 ## Introduction
-This projects aims to create 3D-models of plants of Biscutella laevigata to be able to extract features (e.g., volume).  
-It will carried out throughout 5 years, every two weeks each plant is scanned and the raw 3d-models are stored. The post-processing of the models is carried out in a second moment, and the models are kept also in their raw state to be able to peform secondary processes to extract more features from the model in the future.
+This projects aims to create 3D-models of plants of Biscutella laevigata to be able to extract features (e.g., volume) that represent plant fitness. A selection of the features of interest is yet to be defined. 
+It will be carried out throughout 5 years, every two weeks each plant is scanned and the raw 3d-models are stored. The post-processing of the models is carried out in a second moment, and the models are kept also in their raw state to be able to peform secondary processes to extract more features from the model in the future.
 
 ## Materials
 #### Hardware for scanning the plant:
@@ -26,6 +26,8 @@ It will carried out throughout 5 years, every two weeks each plant is scanned an
     [Structured light scanner](https://en.wikipedia.org/wiki/Structured-light_3D_scanner)  having a light projector and a camera system. Here's the [specifics](https://www.revopoint3d.com/pages/industry-3d-scanner-mini).
     - Calibration plate  
         Black plastic rectangle with different white dots.
+    - Reference cube
+        Cube and stick 
 - **PC** (Lenovo Legion)
     _""characteristics""_
 
