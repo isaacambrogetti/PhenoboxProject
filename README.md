@@ -1,13 +1,7 @@
 # Phenobox Project
 Phenobox project at Parisod's research group University of Fribourg (CH)
 
-## import packages on Blender
-command on terminal:
-```bash
-<path/to/python/bin/in/blender> ./python -m pip install <package_name> --target="path/to/blender/site-packages"
-```
-if it doesn't work, run the terminal as the admin
-
+<img src="setup.jpg" height="600" width="400"/>
 
 ## Introduction
 This projects aims to create 3D-models of plants of Biscutella laevigata to be able to extract features (e.g., volume) that represent plant fitness. A selection of the features of interest is yet to be defined. 
@@ -28,27 +22,29 @@ It will be carried out throughout 5 years, every two weeks each plant is scanned
         Black plastic rectangle with different white dots.
 - **Reference cube**
         3D printed cube (1.5x1.5x1.5cm) and stick (8.5cm)
+
+<img src="ImageToStl.com_referenceobject.stl.gif" width="400" />
   
 - **PC** (Lenovo Legion)
     _""characteristics""_
 
 #### Softwares:
-- **RevoScan5** (_v_)  
+- **RevoScan5** (_v5.4.8_)  
     Software used to control the scanning, strictly related to the scanner and turntable.  
     It is also used for the first post-processing steps of the models.
 - **Revopoint MINI Calibrator**  
     Software downloaded from a sketchy [drive](https://drive.google.com/file/d/1SiG12cl_BQr5D1KG6iokxiNpssmt3VMq/view?usp=sharing) shared by a [forum](https://forum.revopoint3d.com/t/how-to-calibrate-mini/22819) moderator of Revopoint.  
     Works very well for calibrating the camera, but it is very difficult to carry out a successfull calibration.
-- **Blender** (_v_)  
+- **Visual Studio Code** (_v1.96_)
+    [VS code](https://code.visualstudio.com) used to write python (_python v3.11.5_) scripts to extract the features of interest.
+- **Blender** (_v4.1_)  
     [Blender](https://www.blender.org/) is a public project hosted on blender.org, licensed as GNU GPL, owned by its contributors. For that reason Blender is Free and Open Source software, forever.  
     Use blender to import the output file from RevoScan5 to calculate its volume by using python scripts.
-- **Visual Studio Code**
-    [VS code](https://code.visualstudio.com) used to write scripts to extract the features of interest.
 
 
 ## Experimental setting
 There are about 170 seedlings (some of them might still die before reaching maturity), ((unknown plant subspecies)), growing in the greenhouse.  
-There are two main steps that are required to obtain the information needed: scanning of the plant, post-processing of the model to obtain the required features (at the moment only volume).
+There are two main steps that are required to obtain the information needed: scanning of the plant, post-processing of the model to obtain the desired features.
 #### Scanning
 1. Open RevoScan5 on PC and enter in a new or existing project folder, connect scanner and turntable to the pc and turn on the lights in the phenobox.
 2. Check the scanning settings on the right of the screen.
