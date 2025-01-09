@@ -69,10 +69,11 @@ Features that can be captured yet: plant volume, leaf area, leaf length & width.
 4. Merge (Feature) → Select the two files (If merging fails, reverse the order of the selected files)
 5. Name the newly created file
 6. Mesh → 6.0 → Apply (Mesh can be performed for all files simultaneously)
-7. For plant with leaves overlapping the pot: remove the pot and soil manually by encircling them with the right-hand circle tool and deleting. Cut cube stem to limit
-8. Isolation at 1.0% → Detect → Apply
-9. Fill holes → Curved → Detect → Select all with Ctrl+A → Apply
-10. Export as a mesh model (“ply” format)
+7. For plant with leaves overlapping the pot: remove the pot and soil manually by encircling them with the right-hand circle tool and deleting. Cut cube stem to limit.
+   -> otherwise, see below how to remove pot automatically.
+9. Isolation at 1.0% → Detect → Apply
+10. Fill holes → Curved → Detect → Select all with Ctrl+A → Apply
+11. Export as a mesh model (“ply” format)
 
 ##### On Blender (features extraction):
 11. Reset the workspace → A → X → Enter
