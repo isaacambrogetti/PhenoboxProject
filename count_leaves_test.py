@@ -5,7 +5,7 @@ from skimage import img_as_bool
 
 # Function to convert a point cloud to voxel grid and then to binary image
 def point_cloud_to_binary_image(pcd, voxel_size=2.1):
-    # Voxel grid downsampling
+    # Voxel grid downsampling -> reducing data size
     voxel_grid = pcd.voxel_down_sample(voxel_size)
     
     # Convert the point cloud to numpy array
@@ -24,7 +24,7 @@ def point_cloud_to_binary_image(pcd, voxel_size=2.1):
     
     # Mark the points as occupied in the binary image
     for pt in translated_points:
-        binary_image[tuple(pt)] = True
+        bdinary_image[tuple(pt)] = True
     
     return binary_image, min_bound, voxel_size
 

@@ -27,7 +27,17 @@ from mathutils import Vector
 
 
 def clean_float(value: float, precision: int = 0) -> str:
-    # Avoid scientific notation and strip trailing zeros: 0.000 -> 0.0
+    """
+    Convert a floating-point number to a string with a specified precision,
+    avoiding scientific notation and stripping trailing zeros.
+
+    Args:
+        value (float): The floating-point number to be converted.
+        precision (int, optional): The number of decimal places to include. Defaults to 0.
+
+    Returns:
+        str: The formatted floating-point number as a string.
+    """
 
     text = f"{value:.{precision}f}"
     index = text.rfind(".")
@@ -42,6 +52,25 @@ def clean_float(value: float, precision: int = 0) -> str:
 
 
 def get_unit(unit_system: str, unit: str) -> tuple[float, str]:
+    """
+    Returns the unit length relative to a meter and the unit symbol.
+
+    Args:
+        unit_system (str): The system of units to use. Should be either "METRIC" or "IMPERIAL".
+        unit (str): The specific unit to retrieve. For "METRIC", valid units are "KILOMETERS", "METERS", 
+                    "CENTIMETERS", "MILLIMETERS", and "MICROMETERS". For "IMPERIAL", valid units are 
+                    "MILES", "FEET", "INCHES", and "THOU".
+
+    Returns:
+        tuple[float, str]: A tuple containing the unit length relative to a meter and the unit symbol.
+
+    Raises:
+        KeyError: If the unit_system or unit is not found in the predefined units dictionary.
+
+    Notes:
+        If the specified unit is not found, the function will return "CENTIMETERS" for the "METRIC" system 
+        and "INCHES" for the "IMPERIAL" system as fallback units.
+    """
     # Returns unit length relative to meter and unit symbol
 
     units = {
@@ -74,7 +103,7 @@ class OBJECT_separate(bpy.types.Operator):
     bl_idname = "object.separate"
     bl_label = "Separate by loose part"
     bl_description = "Separate the mesh in cube and plant"
-    bl_options = {'REGISTER', 'UNDO'} ## ?????
+    bl_options = {'REGISTER', 'UNDO'} # Enable undo for the operator
     
     def execute(self, context):
         ### 2
@@ -97,9 +126,21 @@ class OBJECT_check_quantity(bpy.types.Operator):
     bl_idname = "object.check_quantity"
     bl_label = "Check number of meshes"
     bl_description = "check if the mesh has been separated in just cube and plant"
-    bl_options = {'REGISTER', 'UNDO'} ## ?????
+    bl_options = {'REGISTER', 'UNDO'}
     
     def execute(self, context):
+        """
+        Executes the main functionality of the operator.
+        Args:
+            context (bpy.types.Context): The context in which the operator is executed.
+        Returns:
+            dict: A dictionary indicating the result of the operation. 
+                  Returns {'CANCELLED'} if the number of selected objects is not equal to 2.
+        Notes:
+            This function checks if the number of selected objects in the Blender context is exactly two.
+            If not, it reports a warning and cancels the operation.
+        """
+
         ### 3
         selected_obj = bpy.context.selected_objects
         
@@ -113,9 +154,28 @@ class OBJECT_volumePlant(bpy.types.Operator):
     bl_idname = "object.plant_volume"
     bl_label = "Get plant volume"
     bl_description = "get volume of the cube, calculate the ratio, get the plant volume and multiplicate it by the ratio"
-    bl_options = {'REGISTER', 'UNDO'} ## ?????
+    bl_options = {'REGISTER', 'UNDO'}
     
     def execute(self, context):
+        """
+        Executes the volume calculation and ratio determination for selected objects in Blender.
+        Parameters:
+        context (bpy.types.Context): The context in which the operator is called.
+        Returns:
+        dict: A dictionary indicating the result of the operation, either {'FINISHED'} or {'CANCELLED'}.
+        The function performs the following steps:
+        1. Checks if exactly one object (the cube) is selected.
+        2. Calculates the volume of the selected cube.
+        3. Computes the ratio of a theoretical volume to the calculated volume of the cube.
+        4. Selects all objects and deselects the cube to isolate the plant object.
+        5. Checks if exactly one object (the plant) is selected.
+        6. Calculates the total volume of the plant object.
+        7. Adjusts the plant volume based on the previously computed ratio.
+        8. Updates the report with the calculated volumes and ratio.
+        Raises:
+        Warning: If more than one object is selected at any point or if the plant mesh is split into multiple meshes.
+        """
+        
         ### 4
         # check if one object is selected (the cube)
         selected_obj = bpy.context.selected_objects
@@ -206,6 +266,23 @@ class OBJECT_measureLeaf(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
+        """
+        Executes the measurement process for the selected leaf object in Blender.
+        This function performs the following steps:
+        1. Ensures only one object is selected and it is of type 'MESH'.
+        2. Extracts the vertices of the selected object.
+        3. Computes the Convex Hull of the vertices.
+        4. Finds the two farthest points on the Convex Hull to determine the leaf length.
+        5. Projects the vertices onto a plane defined by the longest span to determine the leaf width.
+        6. Computes the 2D Convex Hull of the projected points to determine the leaf area.
+        7. Converts the measurements to real-world values using a scale factor.
+        8. Reports the leaf length, width, and area.
+        Args:
+            context (bpy.types.Context): The context in which the operator is called.
+        Returns:
+            dict: A dictionary indicating the result of the operation, either {'FINISHED'} or {'CANCELLED'}.
+        """
+
         # Ensure only one object is selected (the leaf of interest)
         selected_obj = bpy.context.selected_objects
         if len(selected_obj) != 1:
@@ -306,6 +383,17 @@ class OBJECT_measureLeaf(bpy.types.Operator):
         return {'FINISHED'}
 
     def create_visual_point(self, context, location, name="Visual_Point"):
+        """
+        Creates a visual point in the Blender context at the specified location.
+
+        Args:
+            context: The Blender context in which to create the visual point.
+            location (tuple): A tuple of three floats representing the (x, y, z) coordinates where the visual point will be created.
+            name (str, optional): The name to assign to the visual point. Defaults to "Visual_Point".
+
+        Returns:
+            None
+        """
         bpy.ops.mesh.primitive_uv_sphere_add(radius=0.05, location=location)
         point = bpy.context.object
         point.name = name
@@ -313,6 +401,16 @@ class OBJECT_measureLeaf(bpy.types.Operator):
         point.show_in_front = True  # Rendre visible même derrière d'autres objets
     
     def create_visual_line(self, context, start, end, name="Visual_Line"):
+        """
+        Creates a visual line in the Blender context between two points.
+        Args:
+            context (bpy.types.Context): The Blender context in which to create the line.
+            start (tuple): A tuple of three floats representing the starting coordinates of the line.
+            end (tuple): A tuple of three floats representing the ending coordinates of the line.
+            name (str, optional): The name of the new line object. Defaults to "Visual_Line".
+        Returns:
+            None
+        """
         mesh = bpy.data.meshes.new(name)
         line_obj = bpy.data.objects.new(name, mesh)
         context.collection.objects.link(line_obj)
@@ -340,6 +438,15 @@ class OBJECT_PT_GetPlantMeasures_panel(bpy.types.Panel):
     bl_category = 'PlantMeasures'
     
     def draw_report(self, context):
+        """
+        Draws a report layout in the given context.
+        Args:
+            context (bpy.types.Context): The context in which the report is drawn.
+        The function retrieves report information and displays it in a formatted layout.
+        If the context is in edit mode and the report data is available, it adds an operator
+        to the layout for each report item. Otherwise, it simply labels the report items.
+        """
+
         layout = self.layout
         info = report.info()
 

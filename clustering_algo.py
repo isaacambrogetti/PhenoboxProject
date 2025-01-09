@@ -17,6 +17,16 @@ def loading_animation(message="Loading", duration=2):
     print("\n")
 
 def main(input_file, output_file, eps=0.5, min_samples=20):
+    """
+    Main function to perform DBSCAN clustering on a point cloud and filter the clusters (pot removing).
+    Parameters:
+    input_file (str): Path to the input .ply file containing the point cloud data.
+    output_file (str): Path to the output .ply file to save the filtered point cloud.
+    eps (float, optional): The maximum distance between two samples for one to be considered as in the neighborhood of the other. Default is 0.5.
+    min_samples (int, optional): The number of samples in a neighborhood for a point to be considered as a core point. Default is 20.
+    
+    Save the filtered point cloud to a new file
+    """
     loading_animation("Loading point cloud")
 
     # Load the .ply file
